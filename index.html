@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+   
+    <title>Responsive Website</title>
+
+    <style>
+        #map {
+            height: 700px; 
+            width: 88%; 
+            margin: 0 auto; 
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="#" class="nav__logo">NASA SPACE APPS</a>
+          
+        </nav>
+    </header>
+
+    <main class="main">
+        <!--==================== HOME ====================-->
+        <section class="home" id="home">
+            <img src="assets/img/home1.jpg" alt="" class="home__img">
+
+            <div class="home__container container grid">
+                <div class="home__data">
+                    <span class="home__data-subtitle">Genere and Climate</span>
+                    <h1 class="home__data-title">Eco-Equity</h1>
+                </div>
+            </div>
+        </section>
+
+           <!--==================== ABOUT ====================-->
+       <section class="about section" id="about">
+        <div class="about__container container grid">
+            <div class="about__data">
+                <h2 class="section__title about__title">Expondo a Conexão Crítica entre Gênero e Crises Ambientais no Mundo</h2>
+                <p class="about__description">
+                    O projeto EcoEquity tem como objetivo evidenciar a relação problemática entre a desigualdade de gênero e as crises ambientais, 
+                    destacando como essa interseção impacta diversas comunidades ao redor do mundo. Através de uma análise aprofundada, buscamos mostrar 
+                    a gravidade dessa questão, revelando dados de cada país mostrando desafios únicos devido a mudanças climáticas 
+                    e degradação ambiental.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!--==================== PROBLEMS ====================-->
+    <section class="problems section" id="problems">
+        <div class="problems__container container grid">
+            <div class="problems__data">
+                <h2 class="section__title problems__title">Principais problemas que devem ser enfrentados</h2>
+                <p class="problems__description"> Ao destacar a relação crítica entre a desigualdade de gênero e as crises ambientais, buscamos expor as injustiças que mulheres e meninas enfrentam em todo o mundo. Ao abordar questões como a falta de representação nas esferas de poder, a exploração em contextos de deslocamento e o acesso desigual a recursos vitais, queremos não apenas sensibilizar, mas também mobilizar. Acreditamos que é fundamental reconhecer e agir sobre esses problemas interligados, pois a verdadeira equidade só será alcançada quando todas as vozes forem ouvidas e respeitadas. </p>
+            </div>
+            <div class="problem-card">
+                <img src="assets\img\image1.png" alt="Imagem representando o problema" class="problem-img">
+                <h3 class="problem-title">Falta de Representação nas Decisões Políticas</h3>
+                <p class="problem-description">
+                    Em muitos países, as mulheres têm pouco ou nenhum acesso à tomada de decisões políticas e econômicas. Isso significa que as suas necessidades e desafios específicos frequentemente são ignorados. Após desastres como inundações ou desabamentos, as políticas de recuperação podem não considerar suas vulnerabilidades, como a necessidade de proteção contra violência de gênero em abrigos superlotados ou a perda de meios de subsistência informais, como a venda de produtos agrícolas.
+                </p>
+            </div>
+            <div class="problem-card">
+                <img src="assets\img\image2.jpg" alt="Exploração e Tráfico" class="problem-img">
+                <h3 class="problem-title">Exploração e Tráfico</h3>
+                <p class="problem-description">
+                    Em contextos de deslocamento causado por crises ambientais, como a perda de terras agrícolas devido à desertificação ou ao aumento do nível do mar, mulheres e meninas são frequentemente alvos de tráfico de pessoas. A falta de proteção legal e a ausência de recursos financeiros as tornam vulneráveis à exploração, onde são forçadas a trabalhar em condições desumanas ou se tornar vítimas de redes de prostituição.
+                </p>
+            </div>
+            <div class="problem-card">
+                <img src="assets\img\image3.jpg" alt="Acesso Limitado a Recursos Econômicos" class="problem-img">
+                <h3 class="problem-title">Acesso Limitado a Recursos Econômicos e Alimentos</h3>
+                <p class="problem-description">
+                    Durante crises climáticas, como secas e desabamentos, mulheres podem ter acesso restrito a recursos como alimentos e água. Devido a normas culturais que priorizam homens e crianças em situações de escassez. Em alguns casos, mulheres são trocadas por recursos como alimentos e água em comunidades devastadas. Além disso, por não controlarem a terra ou terem acesso direto a fontes de renda estáveis, mulheres têm mais dificuldade de reconstruir suas vidas após a perda de suas casas ou plantações.
+                </p>
+            </div>
+            
+        </div>
+    </section>
+
+        <!--==================== MAPA INTERATIVO E DADOS ====================-->
+        <section class="map" id="climate-section">
+            <h2 class="section__title">Mapa Interativo</h2>
+            <div id="map"></div>
+            <div id="country-data">
+                <h2>Dados Climáticos e de Desigualdade</h2>
+                <p id="country-name">País: </p> <!-- Elemento para o nome do país -->
+                <p id="climate-info">Informações sobre o clima aparecerão aqui.</p>
+                <p id="political-participation">Participação política: </p> <!-- Elemento para participação política -->
+                <p id="literacy-rate">Taxa de alfabetização feminina: </p> <!-- Elemento para a taxa de alfabetização feminina -->
+                <p id="female-labor-participation">Taxa de participação feminina na força de trabalho: </p> <!-- Elemento para participação feminina na força de trabalho -->
+                <p id="gender-violence-rate">Taxa de violência de gênero: </p>
+                <p id="idh-rate">IDH: </p>
+                <p id="health-education-access">Taxa de acesso a saude: </p>
+                <p id="agricultural-production">Taxa de produção agricula: </p>
+                <p id="country-story">Historia:</p>
+                <ul id="country-impacts">Impacto:</ul>
+                <p id="country-actions">Ações:</p>
+                <p id="country-summary">Resumo:</p>
+
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer section"></footer>
+
+        <!-- Script para Leaflet -->
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <script>
+            // Chave de API do OpenWeatherMap
+            const apiKey = '6233691e9875b27dbc6963b7386c3681';  // Substitua pela sua chave da API
+
+            // Função para buscar dados climáticos
+            async function getWeatherData(lat, lon) {
+                try {
+                    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=pt_br`);
+                    if (!response.ok) {
+                        throw new Error(`Erro: ${response.status}`);
+                    }
+                    const data = await response.json();
+                    document.getElementById('climate-info').innerText = `
+                        Clima: ${data.weather[0].description}, 
+                        Temperatura: ${data.main.temp}°C,
+                        Umidade: ${data.main.humidity}%.
+                    `;
+                } catch (error) {
+                    document.getElementById('climate-info').innerText = 'Erro ao carregar dados climáticos.';
+                    console.error('Erro ao consumir a API:', error);
+                }
+            }
+
+            // Função para buscar dados de participação política
+            async function fetchPoliticalParticipation(country) {
+                try {
+                    const response = await fetch(`https://api.worldbank.org/v2/country/${country}/indicator/SG.GEN.PARL.ZS?format=json`);
+                    if (!response.ok) {
+                        throw new Error(`Erro: ${response.status}`);
+                    }
+                    const data = await response.json();
+                    return data[1][0].value; // Retorna a taxa de participação política
+                } catch (error) {
+                    console.error('Erro ao consumir a API de participação política:', error);
+                    return null; // Retorna null em caso de erro
+                }
+            }
+
+             // Função para buscar dados de analfabetismo 
+             async function fetchFemaleLiteracyRate(countryCode) {
+            const url = `http://api.worldbank.org/v2/country/${countryCode}/indicator/SE.ADT.LITR.FE.ZS?format=json`;
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Erro: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                const literacyData = data[1];
+
+                // Filtra os dados válidos e ordena por ano
+                const validData = literacyData.filter(d => d.value !== null).sort((a, b) => b.date - a.date);
+
+                if (validData.length > 0) {
+                    const latestData = validData[0]; // Obtém o último valor disponível
+                    return `Taxa de alfabetização feminina: ${latestData.value}% em ${latestData.date}`;
+                } else {
+                    return "Nenhum dado disponível"; // Retorna mensagem de que não há dados
+                }
+            } catch (error) {
+                console.error('Erro ao consumir a API do Banco Mundial:', error);
+                return "Erro ao carregar dados"; // Retorna mensagem de erro
+            }
+        }
+
+
+            // Função para buscar a taxa de participação feminina na força de trabalho
+            async function fetchFemaleLaborParticipationRate(countryCode) {
+                const url = `https://api.worldbank.org/v2/country/${countryCode}/indicator/SL.TLF.CACT.FE.ZS?format=json`;
+
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) {
+                        throw new Error(`Erro: ${response.status}`);
+                    }
+                    
+                    const data = await response.json();
+
+                    // A estrutura do retorno é um array, onde o segundo item é a lista de dados
+                    const laborData = data[1];
+
+                    // Filtra para encontrar o dado mais recente
+                    const latestData = laborData.reduce((prev, current) => {
+                        return (prev.date > current.date) ? prev : current;
+                    });
+
+                    if (latestData) {
+                        return `Taxa de participação feminina na força de trabalho: ${latestData.value}% em ${latestData.date}`;
+                    } else {
+                        return "Nenhum dado encontrado";
+                    }
+                } catch (error) {
+                    console.error('Erro ao consumir a API do Banco Mundial:', error);
+                    return null; // Retorna null em caso de erro
+                }
+            }
+
+           // Função para buscar a taxa de violência de gênero
+            async function fetchGenderViolenceRate(countryCode) {
+                const url = `https://api.worldbank.org/v2/country/${countryCode}/indicator/VC.IHR.PSRC.P5?format=json`; // Substitua com o endpoint correto
+
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) {
+                        throw new Error(`Erro: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    const violenceData = data[1];
+
+                    // Filtra os dados válidos e ordena por ano
+                    const validData = violenceData.filter(d => d.value !== null).sort((a, b) => b.date - a.date);
+
+                    if (validData.length > 0) {
+                        const latestData = validData[0]; // Obtém o último valor disponível
+                        return `Taxa de violência de gênero: ${latestData.value}% em ${latestData.date}`;
+                    } else {
+                        return "Nenhum dado disponível";
+                    }
+                } catch (error) {
+                    console.error('Erro ao consumir a API de violência de gênero:', error);
+                    return null; // Retorna null em caso de erro
+                }
+            }
+
+            // Função para buscar o Índice de Desenvolvimento Humano (IDH)
+            async function fetchHumanDevelopmentIndex(countryCode) {
+                const url = `https://api.worldbank.org/v2/country/${countryCode}/indicator/SP.DYN.LE00.IN?format=json`; // Altere para a URL correta do IDH, se necessário
+
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) {
+                        throw new Error(`Erro: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    const idhData = data[1];
+
+                    // Filtra os dados válidos e ordena por ano
+                    const validData = idhData.filter(d => d.value !== null).sort((a, b) => b.date - a.date);
+
+                    if (validData.length > 0) {
+                        const latestData = validData[0]; // Obtém o último valor disponível
+                        return `Índice de Desenvolvimento Humano: ${latestData.value} em ${latestData.date}`;
+                    } else {
+                        return "Nenhum dado disponível";
+                    }
+                } catch (error) {
+                    console.error('Erro ao consumir a API do IDH:', error);
+                    return null; // Retorna null em caso de erro
+                }
+            }
+
+            //taxa de acesso a saude
+            async function fetchHealthEducationAccess(countryCode) {
+                const url = `https://api.worldbank.org/v2/country/${countryCode}/indicator/SH.MED.BEDS.ZS?format=json`; // URL para acesso a serviços de saúde
+
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) {
+                        throw new Error(`Erro: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    const healthEducationData = data[1];
+
+                    const validData = healthEducationData.filter(d => d.value !== null).sort((a, b) => b.date - a.date);
+
+                    if (validData.length > 0) {
+                        const latestData = validData[0];
+                        return `Acesso a serviços de saúde: ${latestData.value} leitos por 1.000 pessoas em ${latestData.date}`;
+                    } else {
+                        return "Nenhum dado disponível";
+                    }
+                } catch (error) {
+                    console.error('Erro ao consumir a API de serviços de saúde e educação:', error);
+                    return null;
+                }
+            }
+
+            // Função para buscar a produção agrícola total
+            async function fetchTotalAgriculturalProduction(countryCode) {
+                const url = `https://api.worldbank.org/v2/country/${countryCode}/indicator/NV.AGR.TOTL.ZS?format=json`;
+
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) {
+                        throw new Error(`Erro: ${response.status}`);
+                    }
+                    
+                    const data = await response.json();
+                    const productionData = data[1]; // Dados da produção agrícola
+
+                    // Filtra os dados válidos e ordena por ano
+                    const validData = productionData.filter(d => d.value !== null).sort((a, b) => b.date - a.date);
+
+                    if (validData.length > 0) {
+                        const latestData = validData[0]; // Obtém o último valor disponível
+                        return `Produção agrícola total: ${latestData.value}% do PIB em ${latestData.date}`;
+                    } else {
+                        return "Nenhum dado disponível";
+                    }
+                } catch (error) {
+                    console.error('Erro ao consumir a API de produção agrícola total:', error);
+                    return null; // Retorna null em caso de erro
+                }
+            }
+
+          
+            const countryStories = {
+                
+    "BR": {
+        "historia": "O Brasil enfrenta um aumento alarmante nos incêndios florestais, com a Amazônia e o Pantanal particularmente afetados. A pior seca em 45 anos está deixando essas regiões vulneráveis a incêndios devastadores.",
+        "impactos": [
+            "A Amazônia experimenta sua pior seca em pelo menos 45 anos, exacerbando os incêndios.",
+            "O Pantanal, a maior área úmida tropical do mundo, perdeu 60% da sua superfície de água e está ardendo há meses.",
+            "Incêndios florestais colocam em risco a vida de milhões de pessoas, além de ameaçar espécies raras como onças e araras-azuis."
+        ],
+        "acoes": "O governo brasileiro aumentou os esforços de combate a incêndios na Amazônia e no Pantanal, além de elevar as multas para aqueles que provocam incêndios intencionalmente. Estão sendo investidos também recursos em conscientização sobre os danos causados pelos incêndios.",
+        "resumo": "A intersecção entre gênero e clima no Brasil revela desigualdades críticas. Com uma participação política de apenas 17,54%, as necessidades das mulheres são frequentemente ignoradas em políticas climáticas. A seca severa impacta especialmente as mulheres rurais, que enfrentam dificuldades sem acesso à terra e recursos. Além disso, a alta taxa de violência de gênero (22,38%) e o limitado acesso a serviços de saúde agravam sua vulnerabilidade. É essencial incluir as mulheres como agentes de mudança nas iniciativas governamentais para garantir uma abordagem equitativa nas soluções climáticas."
+    },
+    "PE": {
+        "historia": "O Peru está lidando com incêndios florestais alimentados por condições de seca, especialmente na região de Loreto. A combinação de mudanças climáticas e práticas agrícolas insustentáveis agrava a situação.",
+        "impactos": [
+            "Várias regiões sofrem com incêndios causados por atividades humanas e condições secas.",
+            "A seca afeta áreas como Loreto, colocando milhares de pessoas e animais em risco."
+        ],
+        "acoes": "O Peru está fortalecendo a coleta de dados para avaliar o impacto dos incêndios e trabalhando com organizações internacionais para desenvolver estratégias de prevenção e recuperação.",
+        "resumo": "O Peru enfrenta incêndios florestais devido a práticas agrícolas insustentáveis e mudanças climáticas. As mulheres, que muitas vezes desempenham papéis vitais na agricultura, são as mais afetadas pela escassez de recursos e pela insegurança alimentar resultante. As ações do governo para coletar dados e colaborar internacionalmente são cruciais, mas é necessário garantir que as vozes das mulheres sejam ouvidas para que as soluções sejam eficazes e equitativas."
+    },
+    "CM": {
+        "historia": "A região do Extremo Norte de Camarões enfrenta uma grave insegurança alimentar exacerbada pelas mudanças climáticas e conflitos, com secas e inundações frequentes afetando a produção agrícola.",
+        "impactos": [
+            "Mais de 140.000 pessoas foram afetadas por inundações entre julho e agosto de 2024.",
+            "44.5% das famílias enfrentam consumo alimentar inadequado.",
+            "28.4% das famílias recorrem a estratégias de emergência como reduzir refeições e depender de ajuda alimentar."
+        ],
+        "acoes": "O WFP, com apoio da Coreia do Sul, está promovendo práticas agrícolas resilientes ao clima e capacitando pequenos agricultores, especialmente mulheres e jovens, para melhorar a segurança alimentar e a resiliência.",
+        "resumo": "Em Camarões, a insegurança alimentar agravada por mudanças climáticas e conflitos afeta desproporcionalmente as mulheres, que são responsáveis pela maioria das atividades agrícolas. As secas e inundações comprometem a produção de alimentos, colocando milhões de pessoas em risco. O WFP está capacitando mulheres e jovens em práticas agrícolas resilientes ao clima, reconhecendo que empoderar as mulheres é fundamental para melhorar a segurança alimentar e a resiliência da comunidade."
+    },
+    "MW": {
+        "historia": "O Maláui enfrenta uma grave crise de segurança alimentar devido à seca alimentada pelo fenômeno El Niño, que impactou milhões de pessoas, principalmente mulheres e crianças.",
+        "impactos": [
+            "5.7 milhões de pessoas estão em situação de insegurança alimentar aguda.",
+            "A seca e os ciclones recentes exacerbaram a situação, destruindo colheitas e piorando as condições de vida.",
+            "90.000 crianças necessitam de tratamento nutricional urgente."
+        ],
+        "acoes": "O WFP está distribuindo 33.000 toneladas de alimentos de emergência e suplementos nutricionais, além de fornecer refeições escolares a 700.000 alunos para mitigar os efeitos da fome e da desnutrição.",
+        "resumo": "No Maláui, a crise de segurança alimentar resultante da seca e dos ciclones afeta principalmente mulheres e crianças, que enfrentam dificuldades em acessar alimentos e recursos. O WFP está fornecendo assistência alimentar emergencial e programas de nutrição, mas é crucial abordar as desigualdades de gênero e garantir que as mulheres tenham voz nas decisões relacionadas à recuperação e resiliência, para que possam superar os desafios impostos pelas mudanças climáticas."
+    },
+    "AR": {
+        "historia": "A Argentina enfrenta incêndios florestais nas savanas e florestas devido à seca prolongada, tornando grandes áreas extremamente vulneráveis a incêndios.",
+        "impactos": [
+            "Incêndios florestais espalhados pelas regiões de savanas e florestas, ameaçando ecossistemas locais.",
+            "Milhares de hectares de floresta destruídos e comunidades locais em risco."
+        ],
+        "acoes": "As autoridades argentinas estão implementando campanhas de conscientização sobre a prevenção de incêndios e intensificando os esforços de combate com apoio de voluntários e ONGs.",
+        "resumo": "Na Argentina, os incêndios florestais exacerbados pela seca afetam ecossistemas e comunidades locais, com mulheres em áreas rurais enfrentando maiores desafios em termos de acesso a recursos e suporte durante desastres. A conscientização e os esforços de combate a incêndios são essenciais, mas é vital que as políticas de resposta também incluam a perspectiva de gênero, garantindo que as necessidades específicas das mulheres sejam atendidas."
+    },
+    "US": {
+        "historia": "O furacão Helene atingiu a região de Big Bend, na Flórida, como categoria 4, com ventos sustentados de 225 km/h, causando enchentes severas e inúmeros incidentes relacionados ao vento em várias partes do sudeste dos EUA.",
+        "impactos": [
+            "162 mortes relatadas, com a Carolina do Norte sendo o estado mais afetado (73 mortes), seguida pela Carolina do Sul (36), Geórgia (25), Flórida (17), Tennessee (9) e Virgínia (2).",
+            "Aproximadamente 2.397 pessoas ainda evacuadas em abrigos nos estados de Flórida, Carolina do Norte, Carolina do Sul, Geórgia e Tennessee.",
+            "Fortes chuvas e ventos continuam previstos nas próximas 24 horas em várias regiões."
+        ],
+        "acoes": "O governo federal dos EUA, junto com a FEMA e a Cruz Vermelha Americana, está coordenando esforços de evacuação e assistência médica, incluindo treinamento em RCP e uso de desfibriladores automáticos (AED).",
+        "resumo": "O furacão Helene nos EUA evidenciou a vulnerabilidade das populações em desastres climáticos, com mulheres frequentemente enfrentando maiores riscos devido à sua posição socioeconômica. A resposta governamental, coordenada pela FEMA e pela Cruz Vermelha, deve levar em conta as necessidades específicas das mulheres, especialmente na assistência médica e evacuação, para que sejam consideradas em futuras políticas de gestão de desastres."
+    },
+    "AO": {
+        "historia": "Angola enfrenta condições atipicamente secas e inundações, afetando a produção agrícola e a segurança alimentar.",
+        "impactos": [
+            "Condições atipicamente secas e/ou de seca devido ao início tardio da estação chuvosa, chuvas insuficientes e períodos de seca prolongados.",
+            "Persistência de inundações no noroeste de Angola.",
+            "Temperaturas atipicamente quentes no centro e sul de Angola."
+        ],
+        "acoes": "O governo de Angola está implementando estratégias de mitigação e recuperação para lidar com as condições climáticas adversas.",
+        "resumo": "Em Angola, as condições climáticas adversas, como secas e inundações, impactam a produção agrícola e a segurança alimentar, afetando particularmente as mulheres que são as principais responsáveis pela agricultura familiar. As estratégias de mitigação e recuperação do governo devem considerar as desigualdades de gênero e garantir que as mulheres tenham acesso a recursos e informações para se adaptarem às mudanças climáticas."
+    },
+    "NA": {
+        "historia": "Namíbia está lidando com condições climáticas adversas, incluindo secas severas que afetam a agricultura e a segurança alimentar.",
+        "impactos": [
+            "Condições atipicamente secas e/ou de seca devido ao início tardio da estação chuvosa, chuvas insuficientes e períodos de seca prolongados.",
+            "Temperaturas atipicamente quentes no norte da Namíbia."
+        ],
+        "acoes": "O governo da Namíbia está implementando programas de assistência para ajudar os agricultores a se adaptarem às mudanças climáticas.",
+        "resumo": "Na Namíbia, as secas severas que afetam a agricultura têm um impacto direto nas mulheres, que muitas vezes têm acesso limitado a recursos e suporte. O governo está implementando programas de assistência, mas é essencial que essas iniciativas abordem a desigualdade de gênero, garantindo que as mulheres sejam incluídas na tomada de decisões e nas estratégias de adaptação às mudanças climáticas."
+    },
+    "JP": {
+        "historia": "O Japão enfrentou um tsunami, com uma onda de até 1.2 m observada, causando danos significativos.",
+        "impactos": [
+            "Morte e ferimentos de muitas pessoas.",
+            "Colapso de casas e edifícios, incêndios e deslizamentos de terra."
+        ],
+        "acoes": "O Centro Asiático de Redução de Desastres (ADRC) está coordenando esforços de resposta ao desastre, incluindo avaliação de danos e coleta de informações.",
+        "resumo": "O tsunami no Japão destacou a importância de uma resposta equitativa em desastres naturais, com as mulheres frequentemente em risco de violência e marginalização durante e após tais eventos. O ADRC está coordenando os esforços de resposta, mas é crucial que as perspectivas de gênero sejam integradas nas avaliações de danos e nas estratégias de recuperação para garantir que as necessidades das mulheres sejam atendidas."
+    }
+}
+
+
+function showCountryInfo(country) {
+    document.getElementById('country-title').innerText = country;
+
+    // Acessar as informações do país no objeto countryStories
+    const countryData = countryStories[country];
+
+    // Verificar se o país existe no objeto
+    if (countryData) {
+        document.getElementById('country-history').innerText = countryData.historia;
+
+        // Exibir o resumo
+        document.getElementById('country-summary').innerText = countryData.resumo;
+
+        const impactsList = document.getElementById('country-impacts');
+        impactsList.innerHTML = '';
+
+        // Adicionar os impactos à lista
+        if (countryData.impactos && Array.isArray(countryData.impactos)) {
+            countryData.impactos.forEach(impact => {
+                const li = document.createElement('li');
+                li.innerText = impact;
+                impactsList.appendChild(li);
+            });
+        } else {
+            impactsList.innerHTML = '<li>Nenhum impacto disponível.</li>';
+        }
+    } else {
+        document.getElementById('country-history').innerText = 'País não encontrado.';
+        document.getElementById('country-summary').innerText = ''; // Limpar o resumo se o país não for encontrado
+        document.getElementById('country-impacts').innerHTML = '<li>Nenhum impacto disponível.</li>';
+    }
+}
+
+            async function fetchAllCountryData(lat, lon, countryCode, countryName) {
+                // Atualiza o nome do país
+                document.getElementById('country-name').innerText = `País: ${countryName}`;
+                
+                // Obter dados climáticos
+                getWeatherData(lat, lon); // Dados climáticos
+
+                // Obter dados de participação política
+                const politicalData = await fetchPoliticalParticipation(countryCode);
+                document.getElementById('political-participation').innerText = `Participação política: ${politicalData !== null ? politicalData + '%' : 'Dados não disponíveis'}`;
+
+                // Obter dados de alfabetização
+                const literacyData = await fetchFemaleLiteracyRate(countryCode);
+                document.getElementById('literacy-rate').innerText = literacyData !== null ? literacyData : 'Dados não disponíveis';
+                
+                // Obter dados de participação feminina na força de trabalho
+                const laborParticipationData = await fetchFemaleLaborParticipationRate(countryCode);
+                document.getElementById('female-labor-participation').innerText = laborParticipationData !== null ? laborParticipationData : 'Dados não disponíveis';
+
+                // Obter dados de violência de gênero
+                const violenceData = await fetchGenderViolenceRate(countryCode);
+                document.getElementById('gender-violence-rate').innerText = violenceData !== null ? violenceData : 'Dados não disponíveis';
+            
+                // Obter IDH
+                const idhData = await fetchHumanDevelopmentIndex(countryCode);
+                document.getElementById('idh-rate').innerText = idhData !== null ? idhData : 'Dados não disponíveis';
+            
+                // Obter dados de acesso a serviços de saúde
+                const healthEducationAccessData = await fetchHealthEducationAccess(countryCode);
+                document.getElementById('health-education-access').innerText = healthEducationAccessData !== null ? healthEducationAccessData : 'Dados não disponíveis';
+            
+                // Obter dados de produção agrícola total
+                const agriculturalProductionData = await fetchTotalAgriculturalProduction(countryCode);
+                document.getElementById('agricultural-production').innerText = `${agriculturalProductionData !== null ? agriculturalProductionData : 'Dados não disponíveis'}`;
+            
+              // Exibir história do país e ações
+              if (countryStories[countryCode]) {
+                document.getElementById('country-story').innerText = countryStories[countryCode].historia;
+
+                // Exibir resumo do país
+                document.getElementById('country-summary').innerText = countryStories[countryCode].resumo || 'Resumo não disponível';
+
+                // Limpa a lista de impactos anterior
+                const impactsList = document.getElementById('country-impacts');
+                impactsList.innerHTML = ''; 
+
+                if (countryStories[countryCode].impactos && Array.isArray(countryStories[countryCode].impactos)) {
+                    countryStories[countryCode].impactos.forEach(impact => {
+                        const li = document.createElement('li');
+                        li.innerText = impact;
+                        impactsList.appendChild(li);
+                    });
+                }
+                document.getElementById('country-actions').innerText = countryStories[countryCode].acoes || 'Nenhuma ação disponível';
+            } else {
+                document.getElementById('country-story').innerText = 'História não disponível';
+                document.getElementById('country-summary').innerText = ''; // Limpa o resumo
+                document.getElementById('country-impacts').innerHTML = ''; // Limpa a lista de impactos
+                document.getElementById('country-actions').innerText = 'Nenhuma ação disponível';
+            }
+}
+
+const map = L.map('map', {
+    center: [15.0, 8.0], // Centro inicial em Tchad
+    zoom: 3, // Nível de zoom inicial
+    zoomControl: false, // Desabilitar o controle de zoom
+    scrollWheelZoom: false, // Desabilitar zoom com a roda do mouse
+    doubleClickZoom: false, // Desabilitar zoom com duplo clique
+    touchZoom: false // Desabilitar zoom com toque
+});// Centraliza no Chade; // Centraliza em (0,0) com zoom 1
+            
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+
+            const brasilMarker = L.marker([-14.2350, -51.9253]).addTo(map)
+                .bindPopup('Brasil')
+                .on('click', () => {
+                    fetchAllCountryData(-14.2350, -51.9253, 'BR', 'Brasil'); // Passa o código e o nome do Brasil
+                });
+               
+            const argentinaMarker = L.marker([-38.4161, -63.6167]).addTo(map)
+                .bindPopup('Argentina')
+                .on('click', () => {
+                    fetchAllCountryData(-38.4161, -63.6167, 'AR', 'Argentina'); // Passa o código e o nome da Argentina
+                });
+
+            const usaMarker = L.marker([37.0902, -95.7129]).addTo(map)
+                .bindPopup('Estados Unidos')
+                .on('click', () => {
+                    fetchAllCountryData(37.0902, -95.7129, 'US', 'Estados Unidos'); // Passa o código e o nome dos EUA
+                });
+                const peMarker = L.marker([-9.1900, -75.0152]).addTo(map)
+                .bindPopup('Peru')
+                .on('click', () => {
+                    fetchAllCountryData(-9.1900, -75.0152, 'PE', 'Peru');
+                });
+
+            const cmMarker = L.marker([7.3697, 12.3547]).addTo(map)
+                .bindPopup('Camarões')
+                .on('click', () => {
+                    fetchAllCountryData(7.3697, 12.3547, 'CM', 'Camarões');
+                });
+
+            const mwMarker = L.marker([-13.2543, 34.3015]).addTo(map)
+                .bindPopup('Malawi')
+                .on('click', () => {
+                    fetchAllCountryData(-13.2543, 34.3015, 'MW', 'Malawi');
+                });
+
+            const aoMarker = L.marker([-11.2027, 17.8739]).addTo(map)
+                .bindPopup('Angola')
+                .on('click', () => {
+                    fetchAllCountryData(-11.2027, 17.8739, 'AO', 'Angola');
+                });
+
+            const naMarker = L.marker([-22.9576, 18.4904]).addTo(map)
+                .bindPopup('Namíbia')
+                .on('click', () => {
+                    fetchAllCountryData(-22.9576, 18.4904, 'NA', 'Namíbia');
+                });
+
+            const jpMarker = L.marker([36.2048, 138.2529]).addTo(map)
+                .bindPopup('Japão')
+                .on('click', () => {
+                    fetchAllCountryData(36.2048, 138.2529, 'JP', 'Japão');
+                });
+
+            const carMarker = L.marker([4.3947, 18.5586]).addTo(map)
+                .bindPopup('República Centro-Africana')
+                .on('click', () => {
+                    fetchAllCountryData(4.3947, 18.5586, 'CAR', 'República Centro-Africana');
+                });
+
+            const cubMarker = L.marker([21.5216, -77.7812]).addTo(map)
+                .bindPopup('Cuba')
+                .on('click', () => {
+                    fetchAllCountryData(21.5216, -77.7812, 'CUB', 'Cuba');
+                });
+
+            const honMarker = L.marker([13.2016, -83.5059]).addTo(map)
+                .bindPopup('Honduras')
+                .on('click', () => {
+                    fetchAllCountryData(13.2016, -83.5059, 'HON', 'Honduras');
+                });
+
+            const mexMarker = L.marker([23.6345, -102.5528]).addTo(map)
+                .bindPopup('México')
+                .on('click', () => {
+                    fetchAllCountryData(23.6345, -102.5528, 'MEX', 'México');
+                });
+
+            const vnmMarker = L.marker([14.0583, 108.2772]).addTo(map)
+                .bindPopup('Vietnã')
+                .on('click', () => {
+                    fetchAllCountryData(14.0583, 108.2772, 'VNM', 'Vietnã');
+                });
+
+            const idnMarker = L.marker([-0.7893, 113.9213]).addTo(map)
+                .bindPopup('Indonésia')
+                .on('click', () => {
+                    fetchAllCountryData(-0.7893, 113.9213, 'IDN', 'Indonésia');
+                });
+
+            const mngMarker = L.marker([46.8625, 103.8467]).addTo(map)
+                .bindPopup('Mongólia')
+                .on('click', () => {
+                    fetchAllCountryData(46.8625, 103.8467, 'MNG', 'Mongólia');
+                });
+        </script>
+        </main>
+    </body>
+</html>
